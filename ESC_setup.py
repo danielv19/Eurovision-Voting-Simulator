@@ -126,7 +126,7 @@ def vote(point_counter, finalists, voting_countries):
     recieved = []
     rando2 = input("Would you like to randomly generate points? y/n: ")
     i = 0
-    if rando2 == "yes" or "y":
+    if rando2 == "yes" or rando2 =="y":
       for i in range(10):
         stay = True
         while stay:
