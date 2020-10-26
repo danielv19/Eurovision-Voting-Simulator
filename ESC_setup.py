@@ -90,13 +90,16 @@ def greeting(country):
   elif greeting == 2:
     print(f"{country} calling! What a great show, these are our points.")
 
-def print_top10(boolean, liste):
+def print_top10(boolean, liste, end):
   #print the top 10
   if boolean:
     counter = Counter(liste)
     top10 = counter.most_common(10)
     print("-------------------")
-    print("The Top 10 So Far")
+    if end:
+      print("FINAL SCOREBOARD TOP 10")
+    else:
+      print("The Top 10 So Far")
     place = 1
     for i in top10:
       if place < 10:
@@ -105,6 +108,12 @@ def print_top10(boolean, liste):
         print(f"{place}.| {i[0]} : {i[1]}")
       place += 1
     print("-------------------")
+    if end:
+      print("-------------------")
+      print("Ladies and Gentlemen, we have a result...")
+      print("The winner of this year's Eurovision is...")
+      print(f"{top10[0][0]} with {top10[0][1]} points!!!")
+      print("-------------------")
 
 def print_autovote(country, liste):
   print("-------------------")
@@ -119,14 +128,15 @@ def print_autovote(country, liste):
 
 def vote(point_counter, finalists, voting_countries):
   showTop10 = False
+  end = False
   for country in voting_countries:
-    print_top10(showTop10, point_counter)
+    print_top10(showTop10, point_counter,end)
     #print a greeting 
     greeting(country)
     recieved = []
     rando2 = input("Would you like to randomly generate points? y/n: ")
     i = 0
-    if rando2 == "yes" or rando2 =="y":
+    if rando2 == "yes" or rando2 == "y":
       for i in range(10):
         stay = True
         while stay:
@@ -177,3 +187,5 @@ def vote(point_counter, finalists, voting_countries):
         point_counter[poang] += i + 1
         i += 1
         showTop10 = True
+  end = True
+  print_top10(showTop10, point_counter, end)
